@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{b69283a6-6c22-44ee-8e7f-c99b52cfebb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Plugins">
+      <UniqueIdentifier>{3cb05d27-8296-40d7-9931-c4aa26f6fa86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Systems">
+      <UniqueIdentifier>{9e15a6a5-987f-4e57-86c1-f7cea5238007}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowPlugin.h">
+      <Filter>src\Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="InputPlugin.h">
+      <Filter>src\Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugSystems.h">
+      <Filter>src\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragment_core.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="vertex_core.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="brick.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
