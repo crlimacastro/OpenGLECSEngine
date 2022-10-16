@@ -132,14 +132,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="DebugSystems.cpp" />
+    <ClCompile Include="InputPlugin.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="RendererPlugin.cpp" />
+    <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="WindowPlugin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="DebugSystems.h" />
     <ClInclude Include="InputPlugin.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="RendererPlugin.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="WindowPlugin.h" />
   </ItemGroup>
@@ -149,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="brick.jpg" />
+    <Image Include="pusheen.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

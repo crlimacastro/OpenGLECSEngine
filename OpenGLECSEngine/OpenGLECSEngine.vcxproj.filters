@@ -22,8 +22,20 @@
     <ClCompile Include="main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="DebugSystems.cpp">
+      <Filter>src\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="InputPlugin.cpp">
+      <Filter>src\Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowPlugin.cpp">
+      <Filter>src\Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="RendererPlugin.cpp">
+      <Filter>src\Plugins</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,14 +48,14 @@
     <ClInclude Include="InputPlugin.h">
       <Filter>src\Plugins</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="DebugSystems.h">
       <Filter>src\Systems</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="RendererPlugin.h">
+      <Filter>src\Plugins</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="brick.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="pusheen.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
