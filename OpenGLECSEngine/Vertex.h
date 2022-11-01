@@ -1,9 +1,13 @@
 #pragma once
 #include <glm/glm.hpp>
 
-struct Vertex
+namespace fae
 {
-	glm::vec3 position;
-	glm::vec3 color;
-	glm::vec2 texcoord;
-};
+	struct Vertex
+	{
+		glm::vec3 position;
+		glm::vec3 color;
+		glm::vec2 uvcoord;
+		glm::vec3 normal;
+	};
+}

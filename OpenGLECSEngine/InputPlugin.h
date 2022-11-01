@@ -1,9 +1,13 @@
 #pragma once
 #include <unordered_map>
-#include <entt/entt.hpp>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "App.h"
 
-namespace gfe {
+namespace fae {
+#define FAE_SYSTEM_ORDER_START_INPUT -1024
+#define FAE_SYSTEM_ORDER_UPDATE_INPUT -1024
+
 	struct Input
 	{
 	public:

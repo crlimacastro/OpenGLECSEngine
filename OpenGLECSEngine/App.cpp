@@ -1,73 +1,115 @@
 #include "App.h"
 
-using namespace gfe;
+using namespace fae;
 
 App& App::Start()
 {
+	isRunning = true;
 	registry.ctx().emplace<App&>(*this);
 
-	for (auto& plugin : plugins)
+	AddQueuedPlugins();
+	AddQueuedSystems();
+
+	for (auto& systems : startSystems)
 	{
-		plugin(*this);
+		for (auto& system : systems.second)
+		{
+			system(registry);
+		}
 	}
 
-	isRunning = true;
-	for (auto& node : startSystems.graph())
-	{
-		node.callback()(nullptr, registry);
-	}
 	return *this;
 }
 
 App& App::Update()
 {
-	for (auto& node : updateSystems.graph())
+	AddQueuedPlugins();
+	AddQueuedSystems();
+
+	for (auto& systems : updateSystems)
 	{
-		node.callback()(nullptr, registry);
+		for (auto& system : systems.second)
+		{
+			system(registry);
+		}
 	}
+
 	return *this;
 }
 
 App& App::Run()
 {
 	Start();
+
 	while (isRunning)
 	{
 		Update();
 	}
+
 	Stop();
 	return *this;
 }
 
 App& App::Stop()
 {
-	for (auto& node : stopSystems.graph())
+	for (auto& systems : stopSystems)
 	{
-		node.callback()(nullptr, registry);
+		for (auto& system : systems.second)
+		{
+			system(registry);
+		}
 	}
+
 	return *this;
 }
 
-App& App::AddStartSystem(System system)
+App& fae::App::AddStartSystem(System system, int order)
 {
-	startSystems.emplace(system);
+	systemsToAdd.push({ system, order, startSystems });
 	return *this;
 }
 
-App& App::AddUpdateSystem(System system)
+App& fae::App::AddUpdateSystem(System system, int order)
 {
-	updateSystems.emplace(system);
+	systemsToAdd.push({ system, order, updateSystems });
 	return *this;
 }
 
-App& App::AddStopSystem(System system)
+App& fae::App::AddStopSystem(System system, int order)
 {
-	stopSystems.emplace(system);
+	systemsToAdd.push({ system, order, stopSystems });
 	return *this;
 }
 
 App& App::AddPlugin(Plugin plugin)
 {
-	plugins.insert(plugin);
+	pluginsToAdd.push(plugin);
 	return *this;
+}
+
+void fae::App::AddQueuedPlugins()
+{
+	while (!pluginsToAdd.empty())
+	{
+		pluginsToAdd.front()(*this);
+		pluginsToAdd.pop();
+	}
+}
+
+void fae::App::AddQueuedSystems()
+{
+	while (!systemsToAdd.empty())
+	{
+		auto& addCommand = systemsToAdd.front();
+		auto it = addCommand.systemSet.find(addCommand.order);
+		if (it != addCommand.systemSet.end())
+		{
+			it->second.push_back(addCommand.system);
+		}
+		else
+		{
+			addCommand.systemSet.emplace(addCommand.order, std::vector{ addCommand.system });
+		}
+		systemsToAdd.pop();
+	}
 }

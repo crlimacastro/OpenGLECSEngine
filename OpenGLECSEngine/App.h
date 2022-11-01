@@ -1,12 +1,15 @@
 #pragma once
 #include <entt/entt.hpp>
 #include <unordered_set>
+#include <queue>
 
-namespace gfe {
+namespace fae {
 	class App;
 
-	typedef void (*System)(const void*, entt::registry&);
+	typedef void (*System)(entt::registry&);
 	typedef void (*Plugin)(App&);
+
+#define FAE_SYSTEM_ORDER_DEFAULT 0
 
 	class App
 	{
@@ -27,7 +30,7 @@ namespace gfe {
 		App& Update();
 
 		/// <summary>
-		/// Runs Start once & Update on a loop until App is not running anymore.
+		/// Calls Start once & Update on a loop until App is not running anymore.
 		/// </summary>
 		/// <returns></returns>
 		App& Run();
@@ -40,24 +43,27 @@ namespace gfe {
 		App& Stop();
 
 		/// <summary>
-		/// Adds a System that should only run once.
+		/// Adds a System that should only run once when the App starts.
 		/// </summary>
 		/// <param name="system"></param>
+		/// <param name="order"></param>
 		/// <returns></returns>
-		App& AddStartSystem(System system);
+		App& AddStartSystem(System system, int order = FAE_SYSTEM_ORDER_DEFAULT);
 		/// <summary>
 		/// Adds a System to run on the update loop.
 		/// </summary>
 		/// <param name="system"></param>
+		/// <param name="order"></param>
 		/// <returns></returns>
-		App& AddUpdateSystem(System system);
+		App& AddUpdateSystem(System system, int order = FAE_SYSTEM_ORDER_DEFAULT);
 
 		/// <summary>
 		/// Adds a System that should only run once when the App is stopped.
 		/// </summary>
 		/// <param name="system"></param>
+		/// <param name="order"></param>
 		/// <returns></returns>
-		App& AddStopSystem(System system);
+		App& AddStopSystem(System system, int order = FAE_SYSTEM_ORDER_DEFAULT);
 
 		/// <summary>
 		/// Adds a function with access to the App itself
@@ -68,7 +74,7 @@ namespace gfe {
 		App& AddPlugin(Plugin plugin);
 
 		/// <summary>
-		/// Adds a type that can be accessed anywhere from the registry ctx.
+		/// Adds a type that can be accessed anywhere from the registry context.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <typeparam name="...Args"></typeparam>
@@ -82,9 +88,22 @@ namespace gfe {
 		}
 	private:
 		entt::registry registry;
-		std::unordered_set<Plugin> plugins;
-		entt::organizer startSystems;
-		entt::organizer updateSystems;
-		entt::organizer stopSystems;
+
+		std::queue<Plugin> pluginsToAdd;
+
+		struct SystemAddCommand
+		{
+			System system;
+			int order;
+			std::map<int, std::vector<System>>& systemSet;
+		};
+		std::queue<SystemAddCommand> systemsToAdd;
+
+		std::map<int, std::vector<System>> startSystems;
+		std::map<int, std::vector<System>> updateSystems;
+		std::map<int, std::vector<System>> stopSystems;
+
+		void AddQueuedPlugins();
+		void AddQueuedSystems();
 	};
 };

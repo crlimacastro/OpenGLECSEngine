@@ -3,7 +3,11 @@
 #include <GLFW/glfw3.h>
 #include "App.h"
 
-namespace gfe {
+namespace fae {
+#define FAE_SYSTEM_ORDER_START_WINDOW -4096
+#define FAE_SYSTEM_ORDER_UPDATE_WINDOW -4096
+#define FAE_SYSTEM_ORDER_STOP_WINDOW 4096
+
 	/// <summary>
 	/// Add as a Resource to the App to set Window information on Start.
 	/// </summary>
@@ -21,6 +25,14 @@ namespace gfe {
 
 		Window& SetTitle(const char* value);
 		Window& SetIsResizable(int value);
+
+		size_t GetWidth();
+		size_t GetHeight();
+		float GetAspectRatio();
+
+		size_t GetBufferWidth();
+		size_t GetBufferHeihgt();
+		float GetBufferAspectRatio();
 
 		operator GLFWwindow* () { return window; }
 		operator const GLFWwindow* () const { return window; }

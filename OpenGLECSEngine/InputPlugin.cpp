@@ -1,31 +1,30 @@
 #include "InputPlugin.h"
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include <entt/entt.hpp>
 #include "WindowPlugin.h"
 
-using namespace gfe;
+using namespace fae;
 
-bool gfe::Input::IsPressed(int key)
+bool fae::Input::IsPressed(int key)
 {
 	return __isDown.find(key) != __isDown.end() && __isDown.at(key);
 }
 
-bool gfe::Input::IsJustPressed(int key)
+bool fae::Input::IsJustPressed(int key)
 {
 	return __isDown.find(key) != __isDown.end() && __isDown.at(key) && __wasDown.find(key) != __wasDown.end() && !__wasDown.at(key);
 }
 
-bool gfe::Input::IsJustReleased(int key)
+bool fae::Input::IsJustReleased(int key)
 {
 	return __isDown.find(key) != __isDown.end() && !__isDown.at(key) && __wasDown.find(key) != __wasDown.end() && __wasDown.at(key);
 }
 
-void SetupInput(const void*, entt::registry& registry)
+void SetupInput(entt::registry& registry)
 {
 	registry.ctx().emplace<Input>();
 }
 
-void UpdateInput(const void*, entt::registry& registry)
+void UpdateInput(entt::registry& registry)
 {
 	auto& input = registry.ctx().at<Input>();
 	auto& window = registry.ctx().at<Window>();
@@ -45,8 +44,8 @@ void UpdateInput(const void*, entt::registry& registry)
 	}
 }
 
-void gfe::InputPlugin(App& app)
+void fae::InputPlugin(App& app)
 {
-	app.AddStartSystem(SetupInput)
-		.AddUpdateSystem(UpdateInput);
+	app.AddStartSystem(SetupInput, FAE_SYSTEM_ORDER_START_INPUT)
+		.AddUpdateSystem(UpdateInput, FAE_SYSTEM_ORDER_UPDATE_INPUT);
 }

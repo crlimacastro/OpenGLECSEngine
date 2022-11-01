@@ -132,24 +132,55 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="CameraPlugin.cpp" />
     <ClCompile Include="DebugSystems.cpp" />
+    <ClCompile Include="DefaultPlugins.cpp" />
+    <ClCompile Include="GLBufferObject.cpp" />
+    <ClCompile Include="GLElementBufferObject.cpp" />
+    <ClCompile Include="GLShaderProgram.cpp" />
+    <ClCompile Include="GLTexture.cpp" />
+    <ClCompile Include="GLVertexBufferObject.cpp" />
     <ClCompile Include="InputPlugin.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RendererPlugin.cpp" />
-    <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="PerspectiveCamera.cpp" />
+    <ClCompile Include="rendering.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="GLVertexArrayObject.cpp" />
+    <ClCompile Include="TransformController.cpp" />
+    <ClCompile Include="transforms.cpp" />
     <ClCompile Include="WindowPlugin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="ICamera.h" />
+    <ClInclude Include="CameraPlugin.h" />
     <ClInclude Include="DebugSystems.h" />
+    <ClInclude Include="DefaultPlugins.h" />
+    <ClInclude Include="fae.h" />
+    <ClInclude Include="GLBufferObject.h" />
+    <ClInclude Include="GLElementBufferObject.h" />
+    <ClInclude Include="GLObject.h" />
+    <ClInclude Include="GLShaderProgram.h" />
+    <ClInclude Include="GLTexture.h" />
+    <ClInclude Include="GLVertexBufferObject.h" />
+    <ClInclude Include="IBindable.h" />
     <ClInclude Include="InputPlugin.h" />
-    <ClInclude Include="RendererPlugin.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="PerspectiveCamera.h" />
+    <ClInclude Include="rendering.h" />
+    <ClInclude Include="IShaderProgram.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="transforms.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="GLVertexArrayObject.h" />
+    <ClInclude Include="TransformController.h" />
     <ClInclude Include="WindowPlugin.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment_core.glsl" />
-    <None Include="vertex_core.glsl" />
+    <None Include="core_fragment.glsl" />
+    <None Include="core_vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="brick.jpg" />

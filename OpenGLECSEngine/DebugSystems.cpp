@@ -4,7 +4,7 @@
 #include "InputPlugin.h"
 #include "App.h"
 
-void gfe::CloseOnESC(const void*, entt::registry& registry)
+void fae::CloseOnESC(entt::registry& registry)
 {
 	auto& app = registry.ctx().at<App&>();
 

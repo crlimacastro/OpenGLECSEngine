@@ -1,21 +1,63 @@
 #include "WindowPlugin.h"
 #include <entt/entt.hpp>
 
-using namespace gfe;
+using namespace fae;
 
-Window& gfe::Window::SetTitle(const char* value)
+Window& fae::Window::SetTitle(const char* value)
 {
 	glfwSetWindowTitle(window, value);
 	return *this;
 }
 
-Window& gfe::Window::SetIsResizable(int value)
+Window& fae::Window::SetIsResizable(int value)
 {
 	glfwWindowHint(GLFW_RESIZABLE, value);
 	return *this;
 }
 
-void SetupWindow(const void*, entt::registry& registry)
+size_t fae::Window::GetWidth()
+{
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	return width;
+}
+
+size_t fae::Window::GetHeight()
+{
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	return height;
+}
+
+float fae::Window::GetAspectRatio()
+{
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	return (float)width / height;
+}
+
+size_t fae::Window::GetBufferWidth()
+{
+	int width, height;
+	glfwGetFramebufferSize(window, &width, &height);
+	return width;
+}
+
+size_t fae::Window::GetBufferHeihgt()
+{
+	int width, height;
+	glfwGetFramebufferSize(window, &width, &height);
+	return height;
+}
+
+float fae::Window::GetBufferAspectRatio()
+{
+	int width, height;
+	glfwGetFramebufferSize(window, &width, &height);
+	return (float)width / height;
+}
+
+void SetupWindow(entt::registry& registry)
 {
 	// init glfw
 	glfwInit();
@@ -47,7 +89,7 @@ void SetupWindow(const void*, entt::registry& registry)
 	registry.ctx().emplace<Window>(window);
 }
 
-void UpdateWindow(const void*, entt::registry& registry)
+void UpdateWindow(entt::registry& registry)
 {
 	// poll events
 	glfwPollEvents();
@@ -62,16 +104,16 @@ void UpdateWindow(const void*, entt::registry& registry)
 	}
 }
 
-void CleanupWindow(const void*, entt::registry& registry)
+void CleanupWindow(entt::registry& registry)
 {
 	auto& window = registry.ctx().at<Window>();
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }
 
-void gfe::WindowPlugin(App& app)
+void fae::WindowPlugin(App& app)
 {
-	app.AddStartSystem(SetupWindow)
-		.AddUpdateSystem(UpdateWindow)
-		.AddStopSystem(CleanupWindow);
+	app.AddStartSystem(SetupWindow, FAE_SYSTEM_ORDER_START_WINDOW)
+		.AddUpdateSystem(UpdateWindow, FAE_SYSTEM_ORDER_UPDATE_WINDOW)
+		.AddStopSystem(CleanupWindow, FAE_SYSTEM_ORDER_STOP_WINDOW);
 }
