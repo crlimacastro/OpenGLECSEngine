@@ -1,6 +1,14 @@
 #include "transforms.h"
+#include <glm/gtx/matrix_decompose.hpp>
 
 using namespace fae;
+
+fae::Transform::Transform(const glm::mat4& value)
+{
+	glm::vec3 _skew;
+	glm::vec4 _perspective;
+	glm::decompose(value, scale, rotation, position, _skew, _perspective);
+}
 
 glm::vec3 fae::Transform::Forward() const
 {
@@ -51,15 +59,54 @@ fae::Transform::operator glm::mat4() const
 	return translate * rotate * scale;
 }
 
-void UpdateTransforms(entt::registry& registry)
+Transform& fae::Transform::operator=(const Transform& rhs)
 {
-	for (auto [entity, local, global] : registry.view<const LocalTransform, const GlobalTransform>().each())
+	position = rhs.position;
+	rotation = rhs.rotation;
+	scale = rhs.scale;
+	return *this;
+}
+
+Transform fae::Transform::operator*(const Transform& rhs)
+{
+	return static_cast<glm::mat4>(*this) * static_cast<glm::mat4>(rhs);
+}
+
+GlobalTransform& fae::GlobalTransform::operator=(const LocalTransform& rhs)
+{
+	position = rhs.position;
+	rotation = rhs.rotation;
+	scale = rhs.scale;
+	return *this;
+}
+
+GlobalTransform fae::GlobalTransform::operator*(const LocalTransform& rhs) const
+{
+	return GlobalTransform{ static_cast<glm::mat4>(*this) * static_cast<glm::mat4>(rhs) };
+}
+
+LocalTransform& fae::LocalTransform::operator=(const GlobalTransform& rhs)
+{
+	position = rhs.position;
+	rotation = rhs.rotation;
+	scale = rhs.scale;
+	return *this;
+}
+
+LocalTransform fae::LocalTransform::operator*(const GlobalTransform& rhs) const
+{
+	return LocalTransform{ static_cast<glm::mat4>(*this) * static_cast<glm::mat4>(rhs) };
+}
+
+void fae::UpdateTransforms(entt::registry& registry)
+{
+	for (auto [entity, local, global] : registry.view<const LocalTransform, GlobalTransform>().each())
 	{
-		// TODO Make GlobalTransform == LocalTransform + parent.GlobalTransform
+		// TODO (if there is parent) make GlobalTransform += parent.GlobalTransform
 	}
 }
 
 void fae::TransformPlugin(App& app)
 {
-	app.AddUpdateSystem(UpdateTransforms);
+	app.AddUpdateSystem(UpdateTransforms, FAE_SYSTEM_ORDER_POST_UPDATE);
 }

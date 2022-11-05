@@ -6,11 +6,6 @@
 #include "App.h"
 
 namespace fae {
-#define FAE_SYSTEM_ORDER_START_RENDERING -2048
-#define FAE_SYSTEM_ORDER_UPDATE_RENDERING_BEGIN 2048-512
-#define FAE_SYSTEM_ORDER_UPDATE_RENDERING_DRAW 2048
-#define FAE_SYSTEM_ORDER_UPDATE_RENDERING_END 2048+512
-
 	// Resources
 
 	/// <summary>
@@ -36,11 +31,20 @@ namespace fae {
 	/// </summary>
 	struct MeshRenderer
 	{
-		Mesh* mesh;
-		Material* material;
+		const Mesh* mesh;
+		const Material* material;
 	};
 
 	// Systems
+
+	void SetupRenderer(entt::registry& registry);
+	void SetupCoreShader(entt::registry& registry);
+	void ClearScreen(entt::registry& registry);
+	void UpdatePerspectiveCameraUniforms(entt::registry& registry);
+	void RenderMeshRenderersWithTransforms(entt::registry& registry);
+	void SwapBuffers(entt::registry& registry);
+
+	// Plugins
 
 	void RendererPlugin(App& app);
 }

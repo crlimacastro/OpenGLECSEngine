@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <entt/entt.hpp>
 #include "App.h"
 
 namespace fae
@@ -15,6 +16,9 @@ namespace fae
 		glm::quat rotation{ 1, 0, 0, 0 };
 		glm::vec3 scale{ 1, 1, 1 };
 
+		Transform() = default;
+		Transform(const glm::mat4& value);
+
 		glm::vec3 Forward() const;
 		glm::vec3 Up() const;
 		glm::vec3 Right() const;
@@ -26,19 +30,31 @@ namespace fae
 		glm::mat4 GetViewMatrix() const;
 
 		operator glm::mat4() const;
+		Transform& operator=(const Transform& rhs);
+		Transform operator*(const Transform& rhs);
 	};
 
 	// Components
 
+	struct LocalTransform;
+
 	struct GlobalTransform : public Transform
 	{
+		GlobalTransform& operator=(const LocalTransform& rhs);
+		GlobalTransform operator*(const LocalTransform& rhs) const;
 	};
 
 	struct LocalTransform : public Transform
 	{
+		LocalTransform& operator=(const GlobalTransform& rhs);
+		LocalTransform operator*(const GlobalTransform& rhs)  const;
 	};
 
 	// Systems
+
+	void UpdateTransforms(entt::registry& registry);
+
+	// Plugins
 
 	void TransformPlugin(App& app);
 }

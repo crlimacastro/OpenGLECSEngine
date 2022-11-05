@@ -3,8 +3,8 @@
 
 struct TransformController
 {
-	float moveSpeed;
-	float rotateSpeed;
+	float moveSpeed = 8.f;
+	float rotateSpeed = 128.f;
 };
 
 void UpdateTransformsWithController(entt::registry& registry);

@@ -1,4 +1,4 @@
-#include "CameraPlugin.h"
+#include "camera.h"
 
 void fae::CameraPlugin(App& app)
 {

@@ -11,9 +11,6 @@
     <Filter Include="src\fae">
       <UniqueIdentifier>{b529601e-559a-49bc-a131-30479e8b8889}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\fae\plugins">
-      <UniqueIdentifier>{3cb05d27-8296-40d7-9931-c4aa26f6fa86}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\fae\rendering">
       <UniqueIdentifier>{0386aee9-3377-41c7-a791-3129f6dc7ec7}</UniqueIdentifier>
     </Filter>
@@ -26,9 +23,6 @@
     <Filter Include="src\fae\rendering\interfaces">
       <UniqueIdentifier>{7e36d0d7-2f1e-4c92-9dbb-af64fb0221b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\fae\systems">
-      <UniqueIdentifier>{2ac5d542-686b-4b93-96f8-cb5387f8a633}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\fae\rendering\components">
       <UniqueIdentifier>{5f4fd991-ac71-4865-8a8e-3aa0f560f824}</UniqueIdentifier>
     </Filter>
@@ -37,19 +31,10 @@
     <ClCompile Include="main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="InputPlugin.cpp">
-      <Filter>src\fae\plugins</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowPlugin.cpp">
-      <Filter>src\fae\plugins</Filter>
-    </ClCompile>
-    <ClCompile Include="DefaultPlugins.cpp">
-      <Filter>src\fae\plugins</Filter>
-    </ClCompile>
     <ClCompile Include="App.cpp">
       <Filter>src\fae</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="texture.cpp">
       <Filter>src\fae\rendering</Filter>
     </ClCompile>
     <ClCompile Include="GLShaderProgram.cpp">
@@ -73,9 +58,6 @@
     <ClCompile Include="Material.cpp">
       <Filter>src\fae\rendering</Filter>
     </ClCompile>
-    <ClCompile Include="DebugSystems.cpp">
-      <Filter>src\fae\systems</Filter>
-    </ClCompile>
     <ClCompile Include="TransformController.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -85,33 +67,51 @@
     <ClCompile Include="PerspectiveCamera.cpp">
       <Filter>src\fae\rendering\components</Filter>
     </ClCompile>
-    <ClCompile Include="CameraPlugin.cpp">
+    <ClCompile Include="camera.cpp">
       <Filter>src\fae\rendering</Filter>
     </ClCompile>
     <ClCompile Include="transforms.cpp">
       <Filter>src\fae</Filter>
     </ClCompile>
+    <ClCompile Include="time.cpp">
+      <Filter>src\fae</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>src\fae</Filter>
+    </ClCompile>
+    <ClCompile Include="default_plugins.cpp">
+      <Filter>src\fae</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>src\fae</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateTransformOnYAxis.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="debug_systems.cpp">
+      <Filter>src\fae</Filter>
+    </ClCompile>
+    <ClCompile Include="asset_loading.cpp">
+      <Filter>src\fae</Filter>
+    </ClCompile>
+    <ClCompile Include="lighting.cpp">
+      <Filter>src\fae</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WindowPlugin.h">
-      <Filter>src\fae\plugins</Filter>
-    </ClInclude>
-    <ClInclude Include="InputPlugin.h">
-      <Filter>src\fae\plugins</Filter>
-    </ClInclude>
-    <ClInclude Include="DefaultPlugins.h">
-      <Filter>src\fae\plugins</Filter>
-    </ClInclude>
     <ClInclude Include="App.h">
       <Filter>src\fae</Filter>
     </ClInclude>
     <ClInclude Include="fae.h">
       <Filter>src\fae</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
+    <ClInclude Include="vertex.h">
       <Filter>src\fae\rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="texture.h">
       <Filter>src\fae\rendering</Filter>
     </ClInclude>
     <ClInclude Include="GLObject.h">
@@ -138,7 +138,7 @@
     <ClInclude Include="Material.h">
       <Filter>src\fae\rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
+    <ClInclude Include="mesh.h">
       <Filter>src\fae\rendering</Filter>
     </ClInclude>
     <ClInclude Include="IBindable.h">
@@ -146,9 +146,6 @@
     </ClInclude>
     <ClInclude Include="IShaderProgram.h">
       <Filter>src\fae\rendering\interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugSystems.h">
-      <Filter>src\fae\systems</Filter>
     </ClInclude>
     <ClInclude Include="TransformController.h">
       <Filter>src</Filter>
@@ -159,7 +156,7 @@
     <ClInclude Include="PerspectiveCamera.h">
       <Filter>src\fae\rendering\components</Filter>
     </ClInclude>
-    <ClInclude Include="CameraPlugin.h">
+    <ClInclude Include="camera.h">
       <Filter>src\fae\rendering</Filter>
     </ClInclude>
     <ClInclude Include="ICamera.h">
@@ -167,6 +164,36 @@
     </ClInclude>
     <ClInclude Include="transforms.h">
       <Filter>src\fae</Filter>
+    </ClInclude>
+    <ClInclude Include="time.h">
+      <Filter>src\fae</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>src\fae</Filter>
+    </ClInclude>
+    <ClInclude Include="default_plugins.h">
+      <Filter>src\fae</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>src\fae</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateTransformOnYAxis.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="debug_systems.h">
+      <Filter>src\fae</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>src\fae\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="asset_loading.h">
+      <Filter>src\fae</Filter>
+    </ClInclude>
+    <ClInclude Include="lighting.h">
+      <Filter>src\fae</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,13 +203,5 @@
     <None Include="core_vertex.glsl">
       <Filter>src\fae\rendering\shaders</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="brick.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="pusheen.png">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
 </Project>

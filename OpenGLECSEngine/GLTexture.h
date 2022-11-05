@@ -10,10 +10,11 @@ namespace fae
 		GLTexture(std::string_view path);
 		~GLTexture();
 
-		GLTexture& Bind(GLint textureUnit);
+		virtual Texture& Bind(int textureUnit) override;
 
 		// Inherited via GLObject
-		GLObject& Bind();
-		GLObject& Unbind();
+		virtual operator uint32_t() const override;
+		virtual GLObject& Bind() override;
+		virtual GLObject& Unbind() override;
 	};
 }

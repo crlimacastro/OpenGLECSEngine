@@ -25,11 +25,16 @@ fae::GLTexture::~GLTexture()
 	if (id != 0) glDeleteTextures(1, &this->id);
 }
 
-GLTexture& fae::GLTexture::Bind(GLint textureUnit)
+Texture& fae::GLTexture::Bind(int textureUnit)
 {
 	glActiveTexture(GL_TEXTURE0 + textureUnit);
 	glBindTexture(GL_TEXTURE_2D, id);
 	return *this;
+}
+
+fae::GLTexture::operator uint32_t() const
+{
+	return id;
 }
 
 GLObject& fae::GLTexture::Bind()

@@ -9,6 +9,14 @@ namespace fae {
 	typedef void (*System)(entt::registry&);
 	typedef void (*Plugin)(App&);
 
+#define FAE_SYSTEM_ORDER_PRE_SETUP -4096
+#define FAE_SYSTEM_ORDER_SETUP -2048
+
+#define FAE_SYSTEM_ORDER_PRE_UPDATE -4096
+#define FAE_SYSTEM_ORDER_POST_UPDATE 4096
+
+#define FAE_SYSTEM_ORDER_POST_STOP 4096
+
 #define FAE_SYSTEM_ORDER_DEFAULT 0
 
 	class App

@@ -132,31 +132,38 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="CameraPlugin.cpp" />
-    <ClCompile Include="DebugSystems.cpp" />
-    <ClCompile Include="DefaultPlugins.cpp" />
+    <ClCompile Include="asset_loading.cpp" />
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="debug_systems.cpp" />
+    <ClCompile Include="default_plugins.cpp" />
     <ClCompile Include="GLBufferObject.cpp" />
     <ClCompile Include="GLElementBufferObject.cpp" />
     <ClCompile Include="GLShaderProgram.cpp" />
     <ClCompile Include="GLTexture.cpp" />
     <ClCompile Include="GLVertexBufferObject.cpp" />
-    <ClCompile Include="InputPlugin.cpp" />
+    <ClCompile Include="input.cpp" />
+    <ClCompile Include="lighting.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="rendering.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="RotateTransformOnYAxis.cpp" />
+    <ClCompile Include="texture.cpp" />
     <ClCompile Include="GLVertexArrayObject.cpp" />
+    <ClCompile Include="time.cpp" />
     <ClCompile Include="TransformController.cpp" />
     <ClCompile Include="transforms.cpp" />
-    <ClCompile Include="WindowPlugin.cpp" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="asset_loading.h" />
+    <ClInclude Include="CameraController.h" />
     <ClInclude Include="ICamera.h" />
-    <ClInclude Include="CameraPlugin.h" />
-    <ClInclude Include="DebugSystems.h" />
-    <ClInclude Include="DefaultPlugins.h" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="debug_systems.h" />
+    <ClInclude Include="default_plugins.h" />
     <ClInclude Include="fae.h" />
     <ClInclude Include="GLBufferObject.h" />
     <ClInclude Include="GLElementBufferObject.h" />
@@ -165,26 +172,26 @@
     <ClInclude Include="GLTexture.h" />
     <ClInclude Include="GLVertexBufferObject.h" />
     <ClInclude Include="IBindable.h" />
-    <ClInclude Include="InputPlugin.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="lighting.h" />
     <ClInclude Include="Material.h" />
-    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="mesh.h" />
+    <ClInclude Include="model.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="rendering.h" />
     <ClInclude Include="IShaderProgram.h" />
-    <ClInclude Include="Texture.h" />
+    <ClInclude Include="RotateTransformOnYAxis.h" />
+    <ClInclude Include="texture.h" />
+    <ClInclude Include="time.h" />
     <ClInclude Include="transforms.h" />
-    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="vertex.h" />
     <ClInclude Include="GLVertexArrayObject.h" />
     <ClInclude Include="TransformController.h" />
-    <ClInclude Include="WindowPlugin.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="core_fragment.glsl" />
     <None Include="core_vertex.glsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="brick.jpg" />
-    <Image Include="pusheen.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
