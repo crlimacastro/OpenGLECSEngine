@@ -3,8 +3,8 @@
 
 struct CameraController
 {
-	float moveSpeed = 8.f;
-	float sensitivity = 128.f;
+	float moveSpeed = 10.f;
+	float sensitivity = 1.f;
 };
 
 void UpdateCameraController(entt::registry& registry);

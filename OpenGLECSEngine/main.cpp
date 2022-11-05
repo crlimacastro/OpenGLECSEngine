@@ -52,7 +52,7 @@ void SetupCamera(registry& registry)
 		LocalTransform{}
 		.WithPosition({ 0, 1, -3 })
 		);
-	registry.emplace<CameraController>(e, 8.f, .5f);
+	registry.emplace<CameraController>(e, 10.f, 1.f);
 	auto& activeCamera = registry.ctx().at<ActiveCamera>();
 	activeCamera.camera = &perspectiveCamera;
 }

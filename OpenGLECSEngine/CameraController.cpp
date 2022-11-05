@@ -53,14 +53,11 @@ void UpdateCameraController(entt::registry& registry)
 
 		auto mouseDelta = input.GetMouseMoveDelta();
 
-		// rotate vertically
-		transform.rotation *= glm::quat({ mouseDelta.y * rotateSpeed , 0, 0 });
-		// rotate horizontally
+		// get horizontal rotation
 		auto rotationMatrix = glm::rotate(glm::mat4{ 1 }, -mouseDelta.x * rotateSpeed, glm::vec3{ 0, 1, 0 });
-		transform.rotation = rotationMatrix * glm::toMat4(transform.rotation);
-		// constrict vertical rotation
-		auto eulerAngles = glm::eulerAngles(transform.rotation);
-		eulerAngles.x = std::max(glm::radians(-80.f), std::min(glm::radians(80.f), eulerAngles.x));
-		transform.rotation = glm::quat(eulerAngles);
+		// get vertical rotation
+		rotationMatrix = glm::rotate(rotationMatrix, mouseDelta.y * rotateSpeed, transform.Right());
+		// apply rotation
+		transform.rotation = rotationMatrix * glm::mat4_cast(transform.rotation);
 	}
 }
