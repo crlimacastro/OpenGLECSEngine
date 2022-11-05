@@ -190,8 +190,8 @@
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_fragment.glsl" />
-    <None Include="core_vertex.glsl" />
+    <None Include="main.fs" />
+    <None Include="main.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

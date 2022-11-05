@@ -164,6 +164,13 @@ void SetupMeshEntity(registry& registry)
 	registry.emplace<RotateTransformOnYAxis>(meshEntity3, 100.f);
 }
 
+void SetupRendererClearColor(registry& registry)
+{
+	auto& renderer = registry.ctx().at<Renderer>();
+	// cornflower blue is best color
+	renderer.clearColor = { 100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1 };
+}
+
 void Setup(registry& registry)
 {
 	SetupResources(registry);
@@ -171,9 +178,6 @@ void Setup(registry& registry)
 	SetupGroundPlane(registry);
 	SetupCamera(registry);
 	SetupMeshEntity(registry);
-
-	/*auto& renderer = registry.ctx().at<Renderer>();
-	renderer.clearColor = { 0, 0, 0, 0 };*/
 }
 
 int main()
@@ -183,6 +187,7 @@ int main()
 		.AddPlugin(DefaultPlugins)
 		.AddUpdateSystem(CloseOnESC)
 		.AddStartSystem(Setup)
+		.AddStartSystem(SetupRendererClearColor)
 		.AddUpdateSystem(UpdateTransformsWithController)
 		.AddUpdateSystem(UpdateCameraController)
 		.AddUpdateSystem(UpdateRotateTransformOnYAxis)

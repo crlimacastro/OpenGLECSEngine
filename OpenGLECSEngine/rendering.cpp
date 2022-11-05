@@ -39,8 +39,8 @@ void fae::SetupCoreShader(entt::registry& registry)
 {
 	static GLShaderProgram coreShader;
 	coreShader
-		.LoadVertexFromFile("core_vertex.glsl")
-		.LoadFragmentFromFile("core_fragment.glsl")
+		.LoadVertexFromFile("main.vs")
+		.LoadFragmentFromFile("main.fs")
 		.Link();
 	registry.ctx().emplace<CoreShader>(coreShader);
 }

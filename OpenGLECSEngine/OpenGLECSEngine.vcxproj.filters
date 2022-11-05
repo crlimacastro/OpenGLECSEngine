@@ -197,10 +197,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_fragment.glsl">
+    <None Include="main.fs">
       <Filter>src\fae\rendering\shaders</Filter>
     </None>
-    <None Include="core_vertex.glsl">
+    <None Include="main.vs">
       <Filter>src\fae\rendering\shaders</Filter>
     </None>
   </ItemGroup>
